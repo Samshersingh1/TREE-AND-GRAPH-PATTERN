@@ -1,6 +1,7 @@
 /* this is briliyant patten Based question  
  base case 
- hypothesis kaise bhi karke left and right ka answer de dega baki ka socho */
+ hypothesis kaise bhi karke left and right ka answer de dega baki ka socho 
+  indextrion steps this is most tricky part of this problme ..*/
 
 
 
