@@ -1,4 +1,4 @@
-✅ Correct BFS Approach (Intuition First)
+ /*✅ Correct BFS Approach (Intuition First)
 Start by pushing all 0s into a queue.
 
 Set distance of all 1s to ∞ (or INT_MAX).
@@ -11,7 +11,7 @@ For all 4 directions:
 
 If the neighbor cell can get a shorter distance via current cell, update it and push it to the queue.
 
-This way, the shortest distance will propagate outward from all the 0s. 
+This way, the shortest distance will propagate outward from all the 0s. */
 
 
 class Solution {
@@ -47,4 +47,50 @@ class Solution {
               } 
               return mat;
         }
-    };   
+    };    
+
+
+    /* ❓Why Pushing 0s into the Queue Makes More Sense (Correct Approach)
+Think BFS Like a Wave 🌊
+BFS expands outward level by level, like ripples from a stone thrown into water.
+
+So if you:
+
+Start BFS from all 0s, and
+
+Expand outward to reach each 1,
+
+Then you're naturally computing the shortest distance from any cell to the nearest 0, because BFS always finds the shortest path first in an unweighted graph/grid.
+
+🟩 Analogy:
+Imagine the 0s as fire sources, and you want to know how long it takes for the fire to reach every cell.
+So you light all 0s at time 0 and simulate the spread.
+
+❌ Why Pushing 1s Instead is Wrong
+If you push 1s into the queue and try to search for the nearest 0, you:
+
+Start many BFS searches from far away,
+
+Don't know which direction is optimal,
+
+Risk overwriting distances incorrectly,
+
+Need extra conditions to prevent visiting nodes in the wrong order.
+
+BFS is only guaranteed to work for shortest path if:
+
+You expand from the source, and
+
+You never revisit nodes unless a better path is found (which gets messy when you're the one walking towards 0s).
+
+🧠 Key Intuition:
+From 0s (Correct)	From 1s (Buggy & Messy)
+You know where you’re going	You're guessing direction
+Natural BFS spread	Prone to mistakes
+Distances increase gradually	Need extra conditions
+BFS guarantees correctness	Not intuitive
+🔁 TL;DR:
+✅ Push 0s, propagate distance outward — BFS finds shortest path.
+❌ Pushing 1s and trying to walk toward 0s goes against the nature of BFS, and makes everything harder.
+
+*/
